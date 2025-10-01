@@ -1,7 +1,7 @@
 particlesJS("particles-js", {
   "particles": {
     "number": {
-      "value": 130,
+      "value": 115,
       "density": {
         "enable": true,
         "value_area": 800
@@ -78,3 +78,13 @@ document.getElementById('home').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Ativa animações quando aparecem na tela
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.project-card, .skills').forEach(el => observer.observe(el));
