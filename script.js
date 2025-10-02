@@ -1,90 +1,41 @@
+// Partículas
 particlesJS("particles-js", {
-  "particles": {
-    "number": {
-      "value": 115,
-      "density": {
-        "enable": true,
-        "value_area": 800
-      }
-    },
-    "color": {
-      "value": "#7c3bb1"
-    },
-    "shape": {
-      "type": "circle"
-    },
-    "opacity": {
-      "value": 0.5
-    },
-    "size": {
-      "value": 3
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 120,
-      "color": "#7c3bb1",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 2,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "out_mode": "out"
-    }
+  particles: {
+    number: { value: 100, density: { enable: true, value_area: 800 } },
+    color: { value: "#7c3bb1" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: { enable: true, distance: 120, color: "#7c3bb1", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2 }
   },
-  "interactivity": {
-    "detect_on": "window", 
-    "events": {
-      "onhover": {
-        "enable": true,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": false
-      },
-      "resize": true
-    },
-    "modes": {
-      "repulse": {
-        "distance": 100, 
-        "duration": 0.4   
-      }
-    }
+  interactivity: {
+    detect_on: "window",
+    events: { onhover: { enable: true, mode: "repulse" }, resize: true },
+    modes: { repulse: { distance: 100, duration: 0.4 } }
   },
-  "retina_detect": true
+  retina_detect: true
 });
 
-document.querySelector('.scroll-down').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#about').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-
-
+// Rolagem suave
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
+  anchor.addEventListener("click", e => {
+    e.preventDefault();
+    document.querySelector(anchor.getAttribute("href"))
+      .scrollIntoView({ behavior: "smooth" });
+  });
 });
 
-
-document.getElementById('home').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Logo leva ao topo
+document.getElementById("home").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Ativa animações quando aparecem na tela
+// Animações ao aparecer
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
+    if (entry.isIntersecting) entry.target.classList.add("show");
   });
 }, { threshold: 0.2 });
 
-document.querySelectorAll('.project-card, .skills').forEach(el => observer.observe(el));
+document.querySelectorAll(".project-card, .skills, .certificate-card").forEach(el => observer.observe(el));
